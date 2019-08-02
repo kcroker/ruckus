@@ -100,7 +100,7 @@ proc getFpgaFamily { } {
 
 ## Get the number of CPUs available on the Linux box
 proc GetCpuNumber { } {
-   return [exec cat /proc/cpuinfo | grep processor | wc -l]
+   return [exec getconf _NPROCESSORS_ONLN]
 }
 
 ## Function for putting the TCL script into a wait (in units of seconds)

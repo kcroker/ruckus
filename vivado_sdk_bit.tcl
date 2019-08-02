@@ -31,8 +31,15 @@ if { [file exists ${VIVADO_DIR}/sdk.tcl] == 1 } {
    # Add .ELF to the .bit file properties
    set add_rc [catch {
       add_files -norecurse ${SDK_ELF}  
-   } _RESULT]  
-   set_property SCOPED_TO_REF MicroblazeBasicCore [get_files -all -of_objects [get_fileset sources_1] ${SDK_ELF}]
+   } _RESULT] 
+
+	# Support generic microblaze block design
+set bd_name MicroblazeBasicCore
+if { [info exists ::env(RUCKMORE_MIRCOBLAZE)] } {
+	set bd_name [string map {\" {}} $::env(RUCKMORE_MICROBLAZE)]
+}
+ 
+   set_property SCOPED_TO_REF ${bd_name} [get_files -all -of_objects [get_fileset sources_1] ${SDK_ELF}]
    set_property SCOPED_TO_CELLS { microblaze_0 }  [get_files -all -of_objects [get_fileset sources_1] ${SDK_ELF}]
 
    # Rebuild the .bit file with the .ELF file include

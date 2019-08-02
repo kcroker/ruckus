@@ -33,7 +33,7 @@ proc SourceTclFile { filePath } {
 
 ## Get the number of CPUs available on the Linux box
 proc GetCpuNumber { } {
-   return [exec cat /proc/cpuinfo | grep processor | wc -l]
+   return [exec getconf _NPROCESSOES_ONLN]
 }
 
 ## Check for Vivado HLS versions that are supportted by ruckus

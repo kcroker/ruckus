@@ -42,7 +42,13 @@ if { [CheckTiming false] == true } {
    ## Check if SDK's .sysdef file exists
    #########################################################
    set mbPath [get_files -quiet {MicroblazeBasicCore.bd}]
-   
+  
+# Override if we've got a different one
+if { [info exists ::env(RUCKMORE_MICROBLAZE)] } {
+	set bd_name [string map{\" {}} $::env(RUCKMORE_MICROBLAZE)]
+	set mbPath "${bd_name.bd}"
+}
+ 
    # Check if SDK_SRC_PATH is a valid path
    if { [expr [info exists ::env(SDK_SRC_PATH)]] == 1 && ${mbPath} != "" &&
         [file exists ${OUT_DIR}/${VIVADO_PROJECT}.runs/impl_1/${PROJECT}.sysdef] == 1 } {
