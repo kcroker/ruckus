@@ -45,8 +45,8 @@ if { [CheckTiming false] == true } {
   
 # Override if we've got a different one
 if { [info exists ::env(RUCKMORE_MICROBLAZE)] } {
-	set bd_name [string map{\" {}} $::env(RUCKMORE_MICROBLAZE)]
-	set mbPath "${bd_name.bd}"
+	set bd_name [string map {\" {}} $::env(RUCKMORE_MICROBLAZE)]
+	set mbPath "${bd_name}.bd"
 }
  
    # Check if SDK_SRC_PATH is a valid path
