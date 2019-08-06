@@ -35,7 +35,7 @@ if { [file exists ${VIVADO_DIR}/sdk.tcl] == 1 } {
 
 	# Support generic microblaze block design
 set bd_name MicroblazeBasicCore
-if { [info exists ::env(RUCKMORE_MIRCOBLAZE)] } {
+if { [info exists ::env(RUCKMORE_MICROBLAZE)] } {
 	set bd_name [string map {\" {}} $::env(RUCKMORE_MICROBLAZE)]
 }
  
